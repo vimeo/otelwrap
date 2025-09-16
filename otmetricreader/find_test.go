@@ -25,7 +25,7 @@ func TestFindMetricVal(t *testing.T) {
 	}
 	counter.Add(ctx, 2, metric.WithAttributeSet(attrSet))
 
-	counterVal, counterValErr := FindMetricVal[int64](ctx, r, "a_counter_int", attrSet)
+	counterVal, counterValErr := FindVal[int64](ctx, r, "a_counter_int", attrSet)
 	if counterValErr != nil {
 		t.Errorf("failed to fetch counter metric value: %s", counterValErr)
 	}
@@ -40,7 +40,7 @@ func TestFindMetricVal(t *testing.T) {
 	}
 	gauge.Record(ctx, 3, metric.WithAttributeSet(attrSet))
 
-	gaugeVal, gaugeValErr := FindMetricVal[int64](ctx, r, "a_gauge_int", attrSet)
+	gaugeVal, gaugeValErr := FindVal[int64](ctx, r, "a_gauge_int", attrSet)
 	if gaugeValErr != nil {
 		t.Errorf("failed to fetch gauge metric value: %s", gaugeValErr)
 	}

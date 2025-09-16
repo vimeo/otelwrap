@@ -9,8 +9,16 @@ import (
 	"go.opentelemetry.io/otel/sdk/metric/metricdata"
 )
 
-// FindMetricVal returns the current value of a [metricName] from the [ManualReader].
-func FindMetricVal[V int64 | float64](ctx context.Context, r *otsdkmetric.ManualReader, metricName string, kvs attribute.Set) (V, error) {
+// FindVal is a testing utility to find the value of a specific metric
+// collected by the sdk metric.ManualReader.
+//
+// It searches for a metric matching the provided metricName and attribute.Set.
+// The type parameter V specifies the expected value type, which must be
+// either int64 or float64.
+//
+// An error is returned if a metric matching the name and attributes is not found,
+// or if the found metric's value type does not match V.
+func FindVal[V int64 | float64](ctx context.Context, r *otsdkmetric.ManualReader, metricName string, kvs attribute.Set) (V, error) {
 	var zv V
 	res := metricdata.ResourceMetrics{}
 	if err := r.Collect(ctx, &res); err != nil {
