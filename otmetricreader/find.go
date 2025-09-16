@@ -12,7 +12,7 @@ import (
 // FindVal is a testing utility to find the value of a specific metric
 // collected by the sdk [metric.ManualReader].
 //
-// It searches for a metric matching the provided metricName and attribute.Set.
+// It searches for a metric matching the provided metricName and [attribute.Set].
 // The type parameter V specifies the expected value type, which must be
 // either int64 or float64.
 //
