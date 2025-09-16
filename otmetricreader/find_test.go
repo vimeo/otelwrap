@@ -1,4 +1,4 @@
-package otmetric
+package otmetricreader
 
 import (
 	"context"
